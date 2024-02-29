@@ -7,8 +7,8 @@ const product = Schema({
         require: true
     },
     product_img: {
-        type: String,
-
+        // data:Buffer,
+        type:String,
     },
     price: {
         type: Number,

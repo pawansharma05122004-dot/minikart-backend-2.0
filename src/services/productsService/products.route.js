@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { getProducts, postProducts } from "./products.controller.js";
-
+import { uploadStorage } from "../../middleware/multerMIddleware.js";
 const productRouter = Router()
 
-productRouter.route("/postProduct").post(postProducts);
+
+productRouter.route("/postProduct").post(uploadStorage.single("file"),postProducts);
 productRouter.route("/getProduct").get(getProducts);
-// postProducts
-// getProducts
+
 export default productRouter
