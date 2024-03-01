@@ -4,11 +4,11 @@ const buymodel = new Schema({
     name: {
         type: String
     },
-    purchaseUserById: {
+    purchaseUser: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    productDetailsById: {
+    productDetails: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
     }

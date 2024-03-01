@@ -1,8 +1,9 @@
 import Router from 'express'
-import { postBuyDetails } from './purchase.contoller.js'
+import { getBuyDetails, postBuyDetails } from './purchase.contoller.js'
 
 const purchaseRouter = Router()
 
 purchaseRouter.route('/postPurchaseItem').post(postBuyDetails)
+purchaseRouter.route('/getPurchaseItem').post(getBuyDetails)
 
 export default purchaseRouter;
