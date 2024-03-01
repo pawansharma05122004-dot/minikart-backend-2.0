@@ -12,7 +12,7 @@ const user = Schema({
         unique: [true,'email is already exists'],
     },
     phone_number: {
-        type: Number,
+        type: String,
         require: true,
         unique: true
     },
@@ -22,7 +22,6 @@ const user = Schema({
     },
     customer: {
         type: Boolean,
-        // require: true,
         default:true
     },
 
