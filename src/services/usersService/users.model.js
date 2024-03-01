@@ -23,7 +23,7 @@ const user = Schema({
     customer: {
         type: Boolean,
         // require: true,
-        default:'user'
+        default:true
     },
 
 },

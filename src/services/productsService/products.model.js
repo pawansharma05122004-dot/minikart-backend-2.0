@@ -20,7 +20,12 @@ const product = Schema({
             type: String,
             enum: ['electronic,fashions,beauty,accesories']
         }
-    }
+    },
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        // required: true
+      },
 
 },
     {
