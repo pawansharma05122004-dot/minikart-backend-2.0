@@ -47,5 +47,21 @@ const getProducts = async (req, res) => {
     }
 }
 
-export { postProducts, getProducts }
+const getProductById = async (req, res) => {
+    console.log(req.body.productById)
+    try {
+        const data = await ProductModel.findById(req.body.productById)
+        console.log(data)
+        res.status(200).json({
+            result: data,
+            message: 'succes'
+        })
+
+    } catch {
+        res.status(500).json({
+            mesaage: 'Error'
+        })
+    }
+}
+export { postProducts, getProducts,getProductById }
 
