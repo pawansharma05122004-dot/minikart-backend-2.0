@@ -6,6 +6,7 @@ import cors from 'cors'
 import 'dotenv/config'
 import productRouter from "./src/services/productsService/products.route.js";
 import purchaseRouter from "./src/services/purchaseService/purchase.routes.js";
+import cartRouter from "./src/services/addToCartService/addToCart.route.js";
 const app = express()
 const port = process.env.LOCAL_PORT
 
@@ -27,6 +28,8 @@ app.use(`${process.env.BASE_URL}/products`, productRouter)
 //purchase router
 app.use(`${process.env.BASE_URL}/purchase`, purchaseRouter)
 
+// cartRouter router
+app.use(`${process.env.BASE_URL}/cartItem`, cartRouter)
 
 app.listen(port, () => {
     dbConnect()
