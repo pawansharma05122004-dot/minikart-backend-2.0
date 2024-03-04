@@ -26,6 +26,8 @@ app.use(`${process.env.BASE_URL}/products`, productRouter)
 
 //purchase router
 app.use(`${process.env.BASE_URL}/purchase`, purchaseRouter)
+
+
 app.listen(port, () => {
     dbConnect()
     console.log(`express app lisent in ${port}`)

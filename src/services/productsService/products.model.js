@@ -7,25 +7,43 @@ const product = Schema({
         require: true
     },
     product_img: {
-        // data:Buffer,
         type:String,
+        require: true
     },
+
     price: {
         type: Number,
         require: true,
     },
 
-    product_type: {
+    device_type: {
         type: {
             type: String,
             enum: ['electronic,fashions,beauty,accesories']
         }
     },
+    discount:{
+        type:String
+    },
+
+    thumbnail:{
+        type:String
+    },
+    product_description: {
+
+        type:String,
+    },
+
+    brand:{
+      type:String
+    },
+
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"User",
-        // required: true
+
       },
+
 
 },
     {
