@@ -1,7 +1,9 @@
 import { Router } from "express";
-import {getCartDetails} from './addToCart.controller.js'
+import {getCartDetails, postCartItem} from './addToCart.controller.js'
 const cartRouter =Router()
 
-cartRouter.route('/addToCart').post(getCartDetails)
+cartRouter.route('/getaddToCart').post(getCartDetails)
+cartRouter.route('/postCartItem').post(postCartItem)
+
 
 export default cartRouter;
