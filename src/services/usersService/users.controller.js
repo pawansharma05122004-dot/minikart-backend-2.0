@@ -23,7 +23,7 @@ const logIn = async (req, res) => {
         const user = await UserModel.findOne({ email: email });
 
         if (!user) {
-            res.status(401).json({ err: 'Authontication Field' })
+            return res.status(401).json({ err: 'Authontication Field' })
         }
         const passwordMatch = await bcrypt.compare(password, user.password);
         if (!passwordMatch) {
@@ -32,7 +32,7 @@ const logIn = async (req, res) => {
         const token = jwt.sign({ userId: user._id }, 'tarun@1234', {
             expiresIn: '1h'
         })
-        console.log(token)
+
         res.status(200).json({
             success: true, token: token, user: {
                 user: user

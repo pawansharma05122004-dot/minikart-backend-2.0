@@ -4,11 +4,15 @@ import { mongoose, Schema } from "mongoose";
 const addToCart = new Schema({
      userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        require:true,
+        unique:true
     },
-    productId: {
+    productById: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
+        ref: 'Product',
+        require:true,
+        unique:true
     },
      quantity:{
         type:String

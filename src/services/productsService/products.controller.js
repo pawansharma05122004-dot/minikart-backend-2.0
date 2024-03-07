@@ -63,10 +63,14 @@ const getProducts = async (req, res) => {
 }
 
 const getProductById = async (req, res) => {
-    console.log(req.body.productById)
     try {
+        if(req.body.productById){
+          throw new res.status(404).json({
+            mesaage:"prodcut id is not present",
+
+          })
+        }
         const data = await ProductModel.findById(req.body.productById)
-        console.log(data)
         res.status(200).json({
             result: data,
             message: 'succes'
