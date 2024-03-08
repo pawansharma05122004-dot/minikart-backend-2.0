@@ -24,7 +24,6 @@ const user = Schema({
         type: Boolean,
         default:true
     },
-
 },
     {
         timestamps: true
