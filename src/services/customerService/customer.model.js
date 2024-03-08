@@ -5,11 +5,11 @@ const Customer = new Schema({
         type:String,
         require:true
     },
-    Address:{
+    address:{
         type:String,
         require:true
     },
-    phoneNumber:{
+    phone_number:{
         type:String,
         require:true
     },
@@ -21,21 +21,24 @@ const Customer = new Schema({
         type:String,
         require:true
     },
-    address:{
-        type:String,
-        require:true
-    },
+
     city:{
         type:String,
         require:true
     },
-    landMark:{
+    landmark:{
         type:String,
         require:true
     },
-    addressType:{
+    address_type:{
+        type:String,
+        require:true
+    },
+    alternat_phone:{
         type:String,
         require:true
     },
 
 })
+
+export const CustomerModel = mongoose.model('customer',Customer)
