@@ -44,7 +44,9 @@ const postProducts = async (req, res, next) => {
         })
         next()
     } catch (err) {
-        throw err
+        res.status(500).json({
+            mesaage: err.message
+        })
     }
 }
 
@@ -55,17 +57,18 @@ const getProducts = async (req, res) => {
             result: data,
             message: 'success'
         })
-    } catch {
+    } catch(error) {
         res.status(500).json({
-            mesaage: 'Error'
+            mesaage: error.message
         })
     }
 }
 
 const getProductById = async (req, res) => {
     try {
-        if(req.body.productById){
-          throw new res.status(404).json({
+
+        if(!req.body.productById){
+         res.status(404).json({
             mesaage:"prodcut id is not present",
 
           })
@@ -76,9 +79,9 @@ const getProductById = async (req, res) => {
             message: 'succes'
         })
 
-    } catch {
+    } catch(error) {
         res.status(500).json({
-            mesaage: 'Error'
+            mesaage: error.message
         })
     }
 }

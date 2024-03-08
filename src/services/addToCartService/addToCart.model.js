@@ -6,7 +6,7 @@ const addToCart = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         require:true,
-        unique:true
+
     },
     productById: {
         type: mongoose.Schema.Types.ObjectId,
