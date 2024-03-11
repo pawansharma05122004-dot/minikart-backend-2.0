@@ -11,7 +11,7 @@ const postCartItem = async (req, res) => {
                 product === productId
             })
            console.log(isProductId)
-            if (isProductId > -1) {
+            if (isProductId === -1) {
 
                 cartData.products.push({
                     productId: productId
@@ -42,10 +42,10 @@ const postCartItem = async (req, res) => {
 
             const newCartItem = await CartModel.create({
                 userId: userId,
-                products: {
-                    productId
-                },
-                quantity: quantity
+                products: [{
+                    productId:productId , quantity:quantity
+                }],
+
             });
 
             res.status(201).json({
@@ -63,18 +63,18 @@ const postCartItem = async (req, res) => {
 }
 
 const getCartDetails = async (req, res) => {
-
     try {
         const { userId, } = req.body;
         if (!userId) {
             throw 'userId is not present'
         }
-        const data = await CartModel.find({ userId: userId }).populate('products')
+        const data = await CartModel.find({ userId: userId }).populate('products.productId')
 
         res.status(200).json({
             message: 'item added successfully',
             result: data
         })
+
     } catch (error) {
         res.status(500).json({
             message: 'item added not successfully',
