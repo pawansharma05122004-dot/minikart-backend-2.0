@@ -1,19 +1,16 @@
 import mongoose, { Schema } from 'mongoose'
 
 const orderSchema = new Schema({
-    orderID: { type: String, required: true },
-    customer: {
+    orderID: Schema.Types.ObjectId,
+    customerDetails: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'customer',
     },
-    orderItems:
+    cartDetails:
     {
-        product: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'addToCart'
-        },
-
     },
     orderDate: {
         type: String,
