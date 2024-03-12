@@ -7,9 +7,9 @@ import matches from "express-validator";
 const signUp = async (req, res) => {
     try {
         const { name, email, password, customer, phone_number } = req.body
-        const hashPassword = await bcrypt.hash(password, 10)
+        // const hashPassword = await bcrypt.hash(password, 10)
         //    const strongPassword = hashPassword.matches((/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, "i").withMessage('Password should be combination of one uppercase , one lower case, one special char, one digit and min 8 , max 20 char long'))
-        const user = new UserModel({ name, email, customer, password: hashPassword, phone_number });
+        const user = new UserModel({ name, email, customer, password: password, phone_number });
         await user.save()
         res.status(200).json({ success: true, result: user })
     } catch (error) {
