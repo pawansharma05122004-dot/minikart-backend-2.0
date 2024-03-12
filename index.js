@@ -18,7 +18,7 @@ const port = process.env.LOCAL_PORT
 
 app.use(cors())
 const options = {
-    origin: process.env.FRONTEND_URL,
+    origin: process.env.PRODUCTION_FRONTEND_URL,
 }
 app.use(cors(options))
 app.use(bodyParser.urlencoded({ extended: true }));

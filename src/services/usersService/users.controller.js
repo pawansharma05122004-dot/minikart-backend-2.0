@@ -1,8 +1,5 @@
 import { UserModel } from "./users.model.js";
-
 import jwt from 'jsonwebtoken'
-import matches from "express-validator";
-
 
 const signUp = async (req, res) => {
     try {
@@ -35,6 +32,7 @@ const logIn = async (req, res) => {
                 user: user
             }
         })
+
     } catch (error) {
         res.status(500).json({
             mesaage: error.message
