@@ -1,5 +1,5 @@
 import express from "express";
-import dbConnect from "./dbConnection/dbconnect.js";
+import dbConnect from "./src/dbConnection/dbconnect.js";
 import router from "./src/services/usersService/users.routes.js";
 import bodyParser from 'body-parser';
 import cookieParser from "cookie-parser";
