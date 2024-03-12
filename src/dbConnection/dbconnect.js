@@ -1,8 +1,8 @@
 import mongoose, { connect } from "mongoose";
 
-const dbConnect=()=>{
+const dbConnect=async()=>{
     try{
-     mongoose.connect('mongodb://localhost:27017/miniKart')
+     await mongoose.connect(process.env.MONGO_ATLAS_URL)
 
     }catch(err){
         console.log(err)
