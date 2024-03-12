@@ -1,5 +1,5 @@
 import { UserModel } from "./users.model.js";
-import bcrypt from 'bcrypt'
+// import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import matches from "express-validator";
 // import verifyToken from '../middleware/authMiddleware.js'
