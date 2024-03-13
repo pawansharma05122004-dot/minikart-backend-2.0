@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 
 const signUp = async (req, res) => {
     try {
+        console.log(req)
         const { name, email, password, customer, phone_number } = req.body
         const user = new UserModel({ name, email, customer, password: password, phone_number });
         await user.save()

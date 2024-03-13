@@ -26,6 +26,7 @@ app.use(bodyParser.json())
 app.use(express.static('public'));
 app.use(cookieParser())
 
+
 //users router
 app.use(`${process.env.BASE_URL}/users`, router)
 
@@ -43,7 +44,9 @@ app.use(`${process.env.BASE_URL}/order`, orderRouter)
 //Order Payment
 app.use(`${process.env.BASE_URL}/orderPayment`, paymentRouter)
 
-
+app.get('/',(req,res)=>{
+    res.json({message:'api is running'})
+})
 app.listen(port, () => {
     dbConnect()
     console.log(`express app lisent in ${port}`)
