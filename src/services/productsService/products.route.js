@@ -16,6 +16,7 @@ productRouter.route("/postProduct").post(uploadStorage.fields([
 ]), postProducts);
 productRouter.route("/getProduct").get(getProducts);
 productRouter.route("/getProductById").post(getProductById);
-getProductById
+productRouter.route("/checkTimeout").post(checkTimeout);
+
 
 export default productRouter

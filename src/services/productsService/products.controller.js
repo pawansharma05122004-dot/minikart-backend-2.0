@@ -86,5 +86,9 @@ const getProductById = async (req, res) => {
     }
 }
 
-export { postProducts, getProducts, getProductById }
+
+const checkTimeout=((req,res)=>{
+    res.send('api is wowrk')
+})
+export { postProducts, getProducts, getProductById,checkTimeout }
 
