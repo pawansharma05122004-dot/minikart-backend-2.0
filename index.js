@@ -47,8 +47,8 @@ app.use(`${process.env.BASE_URL}/orderPayment`, paymentRouter)
 app.get('/',(req,res)=>{
     res.json({message:'api is running'})
 })
-app.listen(port, () => {
-    dbConnect()
+app.listen(port, async() => {
+    await dbConnect()
     console.log(`express app lisent in ${port}`)
 })
 
