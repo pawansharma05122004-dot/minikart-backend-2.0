@@ -2,9 +2,9 @@ import mongoose, { connect } from "mongoose";
 
 const dbConnect=async()=>{
     try{
-     await mongoose.connect(process.env.MONGO_ATLAS_URL)
-    }catch(err){
-        console.log(err)
+     await mongoose.connect(process.env.MONGO_LOCAL_URL)
+    }catch(error){
+      throw error
     }
 }
 export default dbConnect;
