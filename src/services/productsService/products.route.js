@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getProductById, getProducts, postProducts,checkTimeout } from "./products.controller.js";
+import { getProductById, getProducts, postProducts,searchPrduct } from "./products.controller.js";
 import { uploadStorage } from "../../middleware/multer.Middleware.js";
 const productRouter = Router()
 
-getProductById
+
 productRouter.route("/postProduct").post(uploadStorage.fields([
     {
         name: "product_img",
@@ -16,7 +16,7 @@ productRouter.route("/postProduct").post(uploadStorage.fields([
 ]), postProducts);
 productRouter.route("/getProduct").get(getProducts);
 productRouter.route("/getProductById").post(getProductById);
-productRouter.route("/checkTimeout").post(checkTimeout);
+productRouter.route("/searchProduct").get(searchPrduct);
 
 
 export default productRouter

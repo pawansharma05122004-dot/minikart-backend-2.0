@@ -22,7 +22,7 @@ const postProducts = async (req, res, next) => {
         }
 
         if (!thumbnailImage) {
-            throw  "thumbnailImage file is required"
+            throw "thumbnailImage file is required"
         }
 
         const avatar = await uploadOnCloudinary(avatarLocalPath)
@@ -34,7 +34,7 @@ const postProducts = async (req, res, next) => {
             price,
             device_type,
             discount,
-            thumbnail:thumbnail?.url || "",
+            thumbnail: thumbnail?.url || "",
             product_description,
             brand
         })
@@ -57,7 +57,7 @@ const getProducts = async (req, res) => {
             result: data,
             message: 'success'
         })
-    } catch(error) {
+    } catch (error) {
         res.status(500).json({
             mesaage: error.message
         })
@@ -66,12 +66,11 @@ const getProducts = async (req, res) => {
 
 const getProductById = async (req, res) => {
     try {
+        if (!req.body.productById) {
+            res.status(404).json({
+                mesaage: "prodcut id is not present",
 
-        if(!req.body.productById){
-         res.status(404).json({
-            mesaage:"prodcut id is not present",
-
-          })
+            })
         }
         const data = await ProductModel.findById(req.body.productById)
         res.status(200).json({
@@ -79,16 +78,35 @@ const getProductById = async (req, res) => {
             message: 'succes'
         })
 
-    } catch(error) {
+    } catch (error) {
         res.status(500).json({
             mesaage: error.message
         })
     }
 }
 
+const searchPrduct = async (req, res) => {
+    try {
+        const searchItem = req.query.key;
+        const result = await ProductModel.find({ $or: [{ product_name: searchItem }, { product_tyoe: searchItem }] })
+        if (result.length !== 0) {
+            res.status(200).json({
+                result: result,
+                message: 'Product Search Successfully'
+            })
+        } else {
+            res.status(200).json({
+                message: 'Item is not present'
+            })
+        }
+    } catch (err) {
+        res.status(500).json({
+            result: err,
+            message: 'Something went wrong'
+        })
+    }
 
-const checkTimeout=((req,res)=>{
-    res.send('api is wowrk')
-})
-export { postProducts, getProducts, getProductById,checkTimeout }
+}
+
+export { postProducts, getProducts, getProductById, searchPrduct }
 
