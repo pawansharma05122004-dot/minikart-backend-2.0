@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { createOrder } from "./customer.controller.js";
+import { createCustomerDetail,getCustomerDetail } from "./customer.controller.js";
+import verifyToken from '../../middleware/auth.Middleware.js' 
 const customerRouter = Router()
 
-
-customerRouter.route('/createOrder').post(createOrder)
+customerRouter.route('/createCustomerDetail').post(createCustomerDetail);
+customerRouter.route('/getCustomerDetail').get(verifyToken,getCustomerDetail);
 
 export default customerRouter;

@@ -15,7 +15,7 @@ const addToCart = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Product',
             require: true,
-            // unique: true,
+             
         },
 
         quantity: {

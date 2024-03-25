@@ -36,7 +36,7 @@ const logIn = async (req, res) => {
         })
 
 
-        res.cookie('token',token, { httpOnly: true, secure: true, maxAge: 3600000 })
+        res.cookie('token', token, { httpOnly: true, secure: true, maxAge: 3600000 })
         res.status(200).json({
             success: true, token: token, user: {
                 user: user
@@ -49,4 +49,18 @@ const logIn = async (req, res) => {
     }
 }
 
-export { signUp, logIn }
+const logOutUser = async (req, res) => {
+    try {
+        const logOut = res.clearCookie('token');
+        if (logOut) {
+            res.status(200).json({
+                success: true,
+                message: 'user log out succesfully'
+            })
+        }
+    } catch (error) {
+
+    }
+}
+
+export { signUp, logIn,logOutUser }

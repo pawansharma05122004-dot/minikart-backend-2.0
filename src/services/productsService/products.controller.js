@@ -14,7 +14,6 @@ const postProducts = async (req, res, next) => {
         let avatarLocalPath = req.files.product_img[0].path;
         let thumbnailImage;
 
-
         if (req.files && Array.isArray(req.files.thumbnail) && req.files.thumbnail.length > 0) {
             thumbnailImage = req.files.thumbnail[0].path
         }

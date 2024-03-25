@@ -5,47 +5,40 @@ const postCartItem = async (req, res) => {
     try {
         const { userId, quantity, productId } = req.body;
 
-        let cartData = await CartModel.findOne({ userId: userId })
+        if (!userId) {
+            return res.status(400).json({ message: "Please enter userId" });
+        }
+
+        if (!productId) {
+            return res.status(400).json({ message: "Please enter productId" });
+        }
+
+        if (!quantity) {
+            return res.status(400).json({ message: "Please enter quantity" });
+        }
+
+        let cartData = await CartModel.findOne({ userId: userId });
+        
         if (cartData) {
-            const isProductId = cartData.products.findIndex((product) => {
-                product === productId
-            })
-           console.log(isProductId)
-            if (isProductId === -1) {
-
-                cartData.products.push({
-                    productId: productId
-                })
-            }else{
-
+            const isProductExist = cartData.products.some((product) => product.productId === productId);
+            
+            if (isProductExist) {
+                console.log('Product already exists in the cart');
+                return res.status(400).json({ message: 'Product already exists in the cart' });
+            } else {
+                cartData.products.push({ productId: productId, quantity: quantity });
             }
-
-            if (!userId) {
-                return res.status(400).json({ message: "Please enter userId" });
-            }
-
-            if (!productId) {
-                return res.status(400).json({ message: "Please enter productId" });
-            }
-            if (!quantity) {
-                return res.status(400).json({ message: "Please enter quantity" });
-            }
-
 
             const result = await cartData.save();
 
             res.status(201).json({
-                message: 'product added successfully',
+                message: 'Product added successfully',
                 result: result
             });
-        }else{
-
+        } else {
             const newCartItem = await CartModel.create({
                 userId: userId,
-                products: [{
-                    productId:productId , quantity:quantity
-                }],
-
+                products: [{ productId: productId, quantity: quantity }],
             });
 
             res.status(201).json({
@@ -53,7 +46,6 @@ const postCartItem = async (req, res) => {
                 result: newCartItem
             });
         }
-
     } catch (error) {
         res.status(500).json({
             message: 'Error adding item to cart',
@@ -61,6 +53,7 @@ const postCartItem = async (req, res) => {
         });
     }
 }
+
 
 const getCartDetails = async (req, res) => {
     try {
