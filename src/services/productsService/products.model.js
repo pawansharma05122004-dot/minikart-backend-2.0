@@ -8,7 +8,7 @@ const product = Schema({
         require: true
     },
     product_img: {
-        type:String,
+        type: String,
         require: true
     },
 
@@ -23,29 +23,43 @@ const product = Schema({
             enum: ['electronic,fashions,beauty,accesories']
         }
     },
-    discount:{
-        type:String
+
+    discount: {
+        type: String
     },
 
-    thumbnail:{
-        type:String
+    thumbnail: {
+        type: String
     },
+
     product_description: {
-
-        type:String,
+        type: String,
     },
 
-    brand:{
-      type:String
+    brand: {
+        type: String
     },
 
-    user:{
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"User",
-
-      },
-
-
+        ref: "User",
+    },
+    category: { type: String, required: true },
+    reviews: [
+        {
+            name: { type: String, required: true },
+            rating: { type: Number, required: true },
+            comment: { type: String, required: true },
+            user: {
+                type: Schema.Types.ObjectId,
+                required: true,
+                ref: "User",
+            },
+        },
+        {
+            timestamps: true,
+        },
+    ],
 },
     {
         timestamps: true
