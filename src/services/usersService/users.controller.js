@@ -35,8 +35,8 @@ const logIn = async (req, res) => {
             expiresIn: '1h'
         })
 
-
         res.cookie('token', token, { httpOnly: true, secure: true, maxAge: 3600000 })
+
         res.status(200).json({
             success: true, token: token, user: {
                 user: user

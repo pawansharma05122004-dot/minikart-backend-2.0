@@ -25,7 +25,7 @@ const createCustomerDetail = async (req, res) => {
             landmark: landmark,
             address_type: addressArea,
             alternat_phone: alternat_phone,
-            user: userID
+            user: req.userId
         })
         await data.save();
         res.status(200).json(({

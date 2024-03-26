@@ -28,7 +28,6 @@ const postProducts = async (req, res, next) => {
         const avatar = await uploadOnCloudinary(avatarLocalPath)
         const thumbnail = await uploadOnCloudinary(thumbnailImage)
 
-
         const data = await ProductModel.create({
             product_img: avatar.url,
             product_name,
@@ -73,7 +72,7 @@ const getProductById = async (req, res) => {
             })
         }
         const data = await ProductModel.findById(req.body.productById)
-        const relatedData = await ProductModel.find({ product_name: data.product_name })
+        const relatedData = await ProductModel.find({ brand: data.brand })
         res.status(200).json({
             result: { data, relatedData },
             message: 'succes'

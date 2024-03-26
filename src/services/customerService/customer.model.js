@@ -43,8 +43,8 @@ const Customer = new Schema({
         type: String,
         require: true
     },
-
-
+}, {
+    timestamps: true
 })
 
 export const CustomerModel = mongoose.model('customer', Customer)
