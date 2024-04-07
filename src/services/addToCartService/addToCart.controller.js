@@ -3,9 +3,9 @@ import { CartModel } from "./addToCart.model.js";
 
 const postCartItem = async (req, res) => {
     try {
-        const { userId, quantity, productId } = req.body;
+        const {quantity, productId } = req.body;
 
-        if (!userId) {
+        if (!req.userId) {
             return res.status(400).json({ message: "Please enter userId" });
         }
 
@@ -17,10 +17,12 @@ const postCartItem = async (req, res) => {
             return res.status(400).json({ message: "Please enter quantity" });
         }
 
-        let cartData = await CartModel.findOne({ userId: userId });
+        let cartData = await CartModel.findOne({ userId:req.userId});
         
         if (cartData) {
-            const isProductExist = cartData.products.some((product) => product.productId === productId);
+            const isProductExist = cartData.products.some((product) => 
+             product.productId.toString() === productId
+            );
             
             if (isProductExist) {
                 console.log('Product already exists in the cart');
@@ -37,7 +39,7 @@ const postCartItem = async (req, res) => {
             });
         } else {
             const newCartItem = await CartModel.create({
-                userId: userId,
+                userId: req.userId,
                 products: [{ productId: productId, quantity: quantity }],
             });
 
@@ -57,11 +59,12 @@ const postCartItem = async (req, res) => {
 
 const getCartDetails = async (req, res) => {
     try {
-        const { userId, } = req.body;
-        if (!userId) {
+        
+        
+        if (!req.userId) {
             throw 'userId is not present'
         }
-        const data = await CartModel.find({ userId: userId }).populate('products.productId')
+        const data = await CartModel.find({ userId: req.userId }).populate('products.productId')
 
         res.status(200).json({
             message: 'item added successfully',

@@ -2,11 +2,6 @@ import jwt from 'jsonwebtoken'
 
 function verifyToken(req,res,next){
     let token  = req.headers.authorization
-    console.log(token)
-    // if(!token){
-    //      token  = req.headers.authorization
-    //      console.log('tokeen authorzation',token)
-    // }
     let jwtToken = token.replace("Bearer", "").trim(token)
     if(!token)
     return res.status(401).json({error:'Unauthorized HTTP,Token not provide'});

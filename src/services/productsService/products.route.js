@@ -14,7 +14,7 @@ productRouter.route("/postProduct").post(uploadStorage.fields([
         maxCount: 4
     }
 ]), postProducts);
-productRouter.route("/getProduct").get(getProducts);
+productRouter.route("/getProducts").get(getProducts);
 productRouter.route("/getProductById").post(getProductById);
 productRouter.route("/searchProduct").get(searchPrduct);
 
