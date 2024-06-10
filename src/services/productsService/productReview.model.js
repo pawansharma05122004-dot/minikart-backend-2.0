@@ -41,34 +41,7 @@ const product = Schema({
      type:String
     },
 
-    specifications:{
-        type:{
-            type:String
-        },
-    
-        model:{
-            
-            type:String
-        },
-    
-        brand: {
-            type: String
-        },
-        sensivity:{
-            type:String
-        },
-        weight:{
-            type:String
-        }
-    },
-    available_offers:{
-        type:String,
-        default:'No Offers'
-    },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-    },
+ 
     category: { type: String, required: true },
     reviews: [
         {
@@ -89,6 +62,4 @@ const product = Schema({
     {
         timestamps: true
     })
-
-product.index({product_description:'text',product_name:'text'})  
 export const ProductModel = mongoose.model('Product', product)

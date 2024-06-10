@@ -2,7 +2,6 @@ import { ProductModel } from "./products.model.js"
 import { uploadOnCloudinary } from "../../utils/cloudnairy.js";
 
 const postProducts = async (req, res, next) => {
-
     try {
         const { product_name, price,
             device_type,
@@ -51,11 +50,37 @@ const postProducts = async (req, res, next) => {
 }
 
 const getProducts = async (req, res) => {
+    console.log(req.body.searchValue)
     try {
-        const data = await ProductModel.find()
+        const { product_name, price, brand } = req.query
+        let data;
+        let record;
+        // if (product_name || brand) {
+        //     console.log(product_name )
+        //     data = await ProductModel.find({
+        //         $or: [
+        //             { 'product_name': { $regex: `${product_name}`, $options: "i" } },
+        //             { 'price':price },
+        //             { 'brand': { $regex: `${brand}`, $options: "i" } }
+        //         ]
+        //     }).sort({createdAt:-1});
+        //     record = await ProductModel.find({
+        //         $or: [
+        //             { 'product_name': { $regex: `${product_name}`, $options: "i" } },
+        //             { 'price':price },
+        //             { 'brand': { $regex: `${brand}`, $options: "i" } }
+        //         ]
+        //     }).count().sort({createdAt:-1});;
+            
+        // } else {
+            data = await ProductModel.find({$text:{$search:req.body.searchValue}}).sort({createdAt:-1});;
+            record = await ProductModel.find({}).count().sort({createdAt:-1});
+        // }
+
         res.status(200).json({
             result: data,
-            message: 'success'
+            message: 'success',
+            record :record
         })
     } catch (error) {
         res.status(500).json({
@@ -87,7 +112,7 @@ const getProductById = async (req, res) => {
 const searchPrduct = async (req, res) => {
     try {
         const searchItem = req.query.key;
-        const result = await ProductModel.find({ $or: [{ product_name: searchItem }, { product_tyoe: searchItem }] })
+        const result = await ProductModel.find({ $or: [{ product_name: searchItem }, { product_type: searchItem }] })
         if (result.length !== 0) {
             res.status(200).json({
                 result: result,
