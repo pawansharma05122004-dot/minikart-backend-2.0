@@ -3,7 +3,9 @@ import { uploadOnCloudinary } from "../../utils/cloudnairy.js";
 
 const postProducts = async (req, res, next) => {
     try {
-        const { product_name, price,
+        const { 
+            product_name, 
+            price,
             device_type,
             discount,
             product_description,
@@ -11,6 +13,8 @@ const postProducts = async (req, res, next) => {
         } = req.body
 
         let avatarLocalPath = req.files.product_img[0].path;
+
+        console.log('avatarPath',avatarLocalPath)
         let thumbnailImage;
 
         if (req.files && Array.isArray(req.files.thumbnail) && req.files.thumbnail.length > 0) {
@@ -50,7 +54,7 @@ const postProducts = async (req, res, next) => {
 }
 
 const getProducts = async (req, res) => {
-    console.log(req.body.searchValue)
+
     try {
         const { product_name, price, brand } = req.query
         let data;
@@ -73,7 +77,8 @@ const getProducts = async (req, res) => {
         //     }).count().sort({createdAt:-1});;
             
         // } else {
-            data = await ProductModel.find({$text:{$search:req.body.searchValue}}).sort({createdAt:-1});;
+            // data = await ProductModel.find({$text:{$search:req.body.searchValue}}).sort({createdAt:-1});
+           data = await ProductModel.find().sort({createdAt:-1});;
             record = await ProductModel.find({}).count().sort({createdAt:-1});
         // }
 

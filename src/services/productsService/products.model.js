@@ -69,7 +69,7 @@ const product = Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
-    category: { type: String, required: true },
+    category: { type: String },
     reviews: [
         {
             name: { type: String, required: true },
