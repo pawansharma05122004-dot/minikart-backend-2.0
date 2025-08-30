@@ -30,7 +30,7 @@ const postProducts = async (req, res, next) => {
 
         const avatar = await uploadOnCloudinary(avatarLocalPath)
         const thumbnail = await uploadOnCloudinary(thumbnailImage)
-
+      console.log(thumbnail,avatar,'datthumbnaila')
         const data = await ProductModel.create({
             product_img: avatar.url,
             product_name,
@@ -41,6 +41,7 @@ const postProducts = async (req, res, next) => {
             product_description,
             brand
         })
+        console.log(data,'data')
         await data.save();
         res.status(200).json({
             mesaage: 'product add successfully'
