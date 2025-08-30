@@ -22,8 +22,7 @@ const uploadOnCloudinary = async (localFilePath) => {
         console.log(error)
         fs.unlinkSync(localFilePath)
         return 'no image';
-    }
-    
+    }   
 }
 
 export {uploadOnCloudinary}
